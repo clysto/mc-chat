@@ -2,36 +2,77 @@
   import * as AV from 'leancloud-storage';
   let username = '';
   let password = '';
+  let errorMsg = '';
 
   function signup() {
+    if (!username || !password) {
+      return;
+    }
     AV.User.signUp(username, password).then(
       () => {
         navigate('/dashboard');
       },
       (error) => {
-        alert(JSON.stringify(error));
+        errorMsg = error.rawMessage;
       }
     );
+  }
+  function reset() {
+    password = '';
+    username = '';
+  }
+
+  $: removeError(username, password);
+
+  function removeError(username, password) {
+    errorMsg = '';
   }
 </script>
 
 <div>
-  <h2>Signup</h2>
-  <label for="">Username</label>
-  <input
-    id="username"
-    name="username"
-    type="text"
-    bind:value={username}
-    required
-  />
-  <label for="">Password</label>
-  <input
-    id="password"
-    name="password"
-    type="password"
-    bind:value={password}
-    required
-  />
-  <button on:click={signup}>Signup</button>
+  <h2 class="text-center text-4xl font-bold mb-6 underline logo-font">
+    Signup
+  </h2>
+  <div class="mb-4">
+    <label for="username" class="block text-sm">Username</label>
+    <input
+      class="w-full"
+      id="username"
+      name="username"
+      type="text"
+      bind:value={username}
+      required
+    />
+  </div>
+  <div class="mb-4">
+    <label for="password" class="block text-sm">Password</label>
+    <input
+      class="w-full"
+      id="password"
+      name="password"
+      type="password"
+      bind:value={password}
+      required
+    />
+  </div>
+  <div class="my-2">
+    {#if errorMsg}
+      <p class="text-red-900 mb-4 bg-red-100 rounded-md p-4">{errorMsg}</p>
+    {:else}
+      <p class="h-4" />
+    {/if}
+  </div>
+  <div>
+    <button
+      on:click={signup}
+      class={`w-full mb-4 ${
+        !username || !password
+          ? 'bg-gray-500 hover:bg-gray-500 cursor-not-allowed'
+          : ''
+      }`}>Signup</button
+    >
+    <button class="w-full bg-gray-400 hover:bg-gray-500" on:click={reset}
+      >Reset</button
+    >
+  </div>
 </div>

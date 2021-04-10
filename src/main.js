@@ -1,6 +1,7 @@
 import * as AV from 'leancloud-storage';
 import { log } from 'pili-rtc-web';
-import 'normalize.css';
+import 'tailwindcss/tailwind.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './global.css';
 import App from './App.svelte';
 

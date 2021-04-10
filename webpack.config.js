@@ -47,19 +47,30 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
         test: /node_modules\/svelte\/.*\.mjs$/,
         resolve: {
           fullySpecified: false,
         },
       },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+      },
+      {
+        test: /\.(svg|woff|woff2)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
@@ -71,6 +82,6 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     port: 3000,
-    quiet: true,
+    // quiet: true,
   },
 };

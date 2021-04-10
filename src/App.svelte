@@ -9,47 +9,21 @@
 </script>
 
 <Router {url}>
-  <nav>
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="login">Login</Link>
-      </li>
-      <li>
-        <Link to="dashboard">Dashboard</Link>
-      </li>
-    </ul>
-  </nav>
-  <main>
-    <Route path="login" component={Login} />
-    <Route path="dashboard" component={Dashboard} />
-    <Route path="signup" component={Signup} />
-    <Route path="/" component={Home} />
-  </main>
+  <div class="">
+    <div
+      class="shadow-lg w-96 rounded-xl bg-white my-4 mx-auto overflow-hidden"
+    >
+      <nav
+        class="bg-purple-800 text-3xl text-white py-4 px-4 font-bold text-center shadow-md logo-font text-shadow"
+      >
+        Minetalk
+      </nav>
+      <main class="p-8">
+        <Route path="login" component={Login} />
+        <Route path="dashboard" component={Dashboard} />
+        <Route path="signup" component={Signup} />
+        <Route path="/" component={Home} />
+      </main>
+    </div>
+  </div>
 </Router>
-
-<style>
-  nav {
-    background-color: rgb(110, 79, 38);
-    padding: 1.5em;
-  }
-
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  nav ul li {
-    display: inline-block;
-    padding: 0 1rem;
-    font-size: 26px;
-    font-weight: bold;
-  }
-
-  main {
-    padding: 2.5rem;
-  }
-</style>

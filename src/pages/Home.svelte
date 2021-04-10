@@ -1,3 +1,8 @@
-<div>
-  <h1>Minecraft Chat</h1>
-</div>
+<script>
+  import { onMount } from 'svelte';
+  import { navigate } from 'svelte-routing';
+
+  onMount(() => {
+    navigate('/dashboard', { replace: true });
+  });
+</script>
